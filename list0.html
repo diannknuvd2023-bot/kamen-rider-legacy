@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="zh">
+<header>
+  <div class="header-center">
+    <img src="images/圓logo.png" class="logo">
+    <h1>KAMEN RIDER LEGACY</h1>
+  </div>
+</header>
+
+<body>
+<style>
+/* ====== 全域 ====== */
+
+header {
+  background: #0f5735; 
+  padding: 15px;
+  color: white;
+  text-align: center; 
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #000;
+  color: #fff;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ====== Header ====== */
+
+.header-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; /* Logo 與字的距離 */
+}
+
+.logo {
+  height: 50px;  /* 可調整 logo 大小 */
+}
+
+.header-menu {
+  background: #e30f32;
+  padding: 10px;
+  text-align: center;
+}
+
+.header-menu a {
+  margin: 0 10px;
+  font-weight: bold;
+}
+
+/* 紅色主選單基本 */
+.header-menu a {
+  margin: 0 14px;
+  font-weight: bold;
+  padding: 6px 12px;
+  border-radius: 4px;
+  transition: background .2s;
+}
+
+/* 滑鼠移過 */
+.header-menu a:hover {
+  background: #b10d28;
+}
+
+/* 被點擊（目前頁面） */
+.header-menu a.active {
+  background: #8c0a1f; 
+}
+
+
+/* ====== Layout ====== */
+.container {
+  width: 1100px;
+  margin: auto;
+  padding: 20px;
+}
+
+.left-page {
+  background: #111;     /* 深灰，完全遮住背景 */
+  padding: 20px;
+  box-shadow: 0 0 10px #000;
+  position: relative;  
+  z-index: 1;
+}
+
+/* ===== 左右頁面格式 ===== */
+.left-page, 
+.right-page {
+  background: #111;
+  padding: 20px;
+  box-shadow: 0 0 10px #000000;
+}
+
+/* ====== 灰色主選單（平成、令和…） ===== */
+.era-menu {
+  margin: 25px 0;
+}
+
+/* ======================
+   灰色選單：橫式版（置中＋單行）
+====================== */
+.era-menu.horizontal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  width: 100%;             
+  margin: 20px auto 40px;
+}
+
+.era-menu.horizontal .era-btn {
+  width: auto;
+  padding: 14px 28px;
+  font-size: 16px;
+  white-space: nowrap;
+  border-radius: 20px;
+}
+
+/* 目前頁面 */
+.era-btn.active {
+  background: #888;
+  color: #fff;
+  font-weight: bold;
+}
+
+.era-btn {
+  display: block;
+  width: 120px;
+  padding: 10px;
+  background: #cfcfcf;
+  color: #000;
+  margin-bottom: 10px;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.era-btn:hover {
+  background: #e4e4e4;
+}
+
+/* ====== 海報 10 格 ====== */
+.poster-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.poster-grid img {
+  width: 100%;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: transform .3s;
+}
+
+.poster-grid img:hover {
+  transform: scale(1.05);
+}
+
+.main-poster {
+  text-align: center;   /* 讓海報置中 */
+  margin: 0px 0;       /* 與上下保持距離 */
+}
+
+.main-poster img {
+  width: 100%;          /* 自動縮放到 container 寬度 */
+  max-width: 850px;    /* 限制最大寬度，避免過大 */
+  border-radius: 20px;   /* 可選：外框圓角 */
+}
+
+.main-poster {
+  margin-bottom: 40px; /* 控制圖片與下面文字距離 */
+}
+
+
+/* 左側選單固定寬度 */
+.era-menu {
+  width: 150px;
+}
+
+/* 新增的 Series 標題 */
+.era-title {
+  color: #fff;
+  font-size: 20px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+
+/* ===== Footer ===== */
+footer {
+  background: #222;
+  color: #ccc;
+  padding: 30px 20px;
+  text-align: center;
+  margin-top: 60px;   
+}
+
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #000;
+  background-image: url("images/backgroundv2.png"); /* 淡背景圖 */
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+  background-attachment: fixed; /* 滾動時有質感 */
+  color: #fff;
+}
+
+/* ======================
+   點擊放大（Lightbox）
+====================== */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.8);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 16px;
+}
+
+/* ======================
+   兩張海報並排（統一大小）
+====================== */
+.photo-pair {
+  display: flex;
+  justify-content: center;   /* 整組置中 */
+  gap: 40px;                 /* 兩張圖的間距 */
+  margin: 40px 0;
+}
+
+.photo-item {
+  text-align: center;
+}
+
+/* 控制每張海報大小 */
+.photo-item img {
+  width: 420px;             
+  max-width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform .3s, box-shadow .3s;
+}
+
+/* hover 微放大 */
+.photo-item img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 10px 30px rgba(0,0,0,.5);
+}
+
+/* 圖片下方說明 */
+.photo-caption {
+  font-size: 13px;
+  color: #ccc;
+  margin-top: 10px;
+}
+
+
+.site-footer {
+  background: #111;
+  color: #ccc;
+  padding: 40px 20px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.footer-logo {
+  width: 60px;
+  margin-bottom: 15px;
+  opacity: 0.9;
+}
+
+.footer-text {
+  line-height: 1.6;
+  margin-bottom: 15px;
+  color: #aaa;
+}
+
+.footer-links {
+  margin-bottom: 15px;
+}
+
+.footer-links a {
+  color: #fff;
+  font-weight: bold;
+  margin: 0 5px;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: #e30f32; 
+}
+
+.footer-copy {
+  font-size: 12px;
+  color: #777;
+}
+
+.footer-logo {
+  width: 120px;     
+  max-width: 120px;  /* ← 避免過大 */
+  margin-bottom: 15px;
+}
+
+/* ======================
+   騎士列表（2 x 5）
+====================== */
+.rider-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px 0px;
+  margin-top: 40px;
+}
+
+.rider-card {
+  text-align: center;
+}
+
+.rider-card img {
+  width: 100%;
+  max-width: 500px;      /* ★ 控制海報大小（關鍵） */
+  margin: 0 auto;        /* ★ 置中 */
+  display: block;        /* ★ 讓 margin 生效 */
+  border-radius: 10px;
+  transition: transform .3s, box-shadow .3s;
+  cursor: pointer;
+}
+
+.rider-card img:hover {
+  transform: scale(1.04);
+  box-shadow: 0 12px 30px rgba(0,0,0,.5);
+}
+
+.rider-card h3 {
+  margin-top: 24px;  
+  margin-bottom: 6px;
+  font-size: 18px;
+}
+
+.rider-card p {
+  font-size: 14px;
+  color: #ccc;
+}
+</style>
+
+<script>
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = lightbox.querySelector('img');
+
+  document.querySelectorAll('.photo-item img').forEach(img => {
+    img.addEventListener('click', () => {
+      lightboxImg.src = img.src;
+      lightbox.style.display = 'flex';
+    });
+  });
+
+  lightbox.addEventListener('click', () => {
+    lightbox.style.display = 'none';
+  });
+</script>
+
+
+<div class="header-menu">
+  <a href="index.html">Home</a>
+  <a href="history.html">History</a>
+  <a href="features.html">Features</a>
+  <a href="list0.html" class="active">Series</a>
+</div>
+
+ <!-- 橫式灰色選單 -->
+<div class="era-menu horizontal">
+  <a class="era-btn active" href="list0.html?era=showa">Showa</a>
+  <a class="era-btn" href="list2.html?era=heisei1">Heisei Phase 1</a>
+  <a class="era-btn" href="list.html?era=heisei2">Heisei Phase 2</a>
+  <a class="era-btn" href="list3.html?era=rewa">Reiwa</a>
+  <a class="era-btn" href="list4.html?era=special">Others</a>
+
+</div>
+
+<div class="container left-page">
+
+  <h2>Showa Kamen Rider (1971-1989)</h2>
+  <p>The Showa era marks the <b>origin and foundation of Kamen Rider</b>,</p>
+  <p>establishing the core identity of the franchise through themes of <b>justice, sacrifice, and resistance against evil organizations</b>.</p>
+  <p>Stories often depict cyborg heroes born from tragedy,</p>
+  <p>fighting alone against oppressive forces while struggling with their altered humanity and sense of isolation.</p>
+  <p>With a strong emphasis on <b>classic tokusatsu action, moral clarity, and heroic resolve</b>,</p>
+  <p>Showa Riders defined the image of Kamen Rider as a symbol of <b>hope, rebellion, and unwavering justice</b>.</p>
+
+
+  <!-- 騎士列表 -->
+  <div class="rider-grid">
+
+    <!-- 1 -->
+    <div class="rider-card">
+      <img src="images/28418_0.jpg" alt="">
+      <h3>Kamen Rider (1971)</h3>
+      <p>The origin of the legend, depicting a cyborg hero</p>
+      <p>who rebels against the evil organization that created him.</p>
+      <p>t establishes the core themes of justice, sacrifice,</p>
+      <p>and the eternal fight for human freedom.</p>
+    </div>
+
+    <!-- 2 -->
+    <div class="rider-card">
+      <img src="images/28419.jpg" alt="">
+      <h3>Kamen Rider V3 (1973)</h3>
+      <p>A tragic successor who inherits the will of two fallen Riders</p>
+      <p>and fights to protect humanity.</p>
+      <p>The series deepens emotional drama while reinforcing</p>
+      <p>legacy, responsibility, and heroic resolve.</p>
+    </div>
+
+    <!-- 3 -->
+    <div class="rider-card">
+      <img src="images/28420_0.jpg" alt="">
+      <h3>Kamen Rider X (1974)</h3>
+      <p>A technologically enhanced Rider created</p>
+      <p>to combat powerful enemies from the sea.</p>
+      <p>Blending science fiction and classic heroism,</p>
+      <p>it introduces a weapon-focused combat style.</p>
+    </div>
+
+    <!-- 4 -->
+    <div class="rider-card">
+      <img src="images/28421.png" alt="">
+      <h3>Kamen Rider Amazon (1974)</h3>
+      <p>A feral and instinct-driven Rider raised in the jungle,</p>
+      <p>far from human civilization.</p>
+      <p>Known for its raw action and biological horror elements,</p>
+      <p>it stands out as one of the darkest Showa entries.</p>
+    </div>
+
+    <!-- 5 -->
+    <div class="rider-card">
+      <img src="images/28422_0.jpg" alt="">
+      <h3>Kamen Rider Stronger (1975)</h3>
+      <p>A confident and energetic Rider empowered</p>
+      <p>by electricity to battle evolving threats.</p>
+      <p>The story emphasizes growth through</p>
+      <p>rivalry, teamwork, and the strength of human bonds.</p>
+    </div>
+
+    <!-- 6 -->
+    <div class="rider-card">
+      <img src="images/28423_0.jpg" alt="">
+      <h3>Kamen Rider Skyrider (1979)</h3>
+      <p>A redesigned Rider capable of flight,</p>
+      <p>symbolizing evolution within the franchise.</p>
+      <p>It bridges classic Showa traditions with</p>
+      <p>modernized action and experimental storytelling.</p>
+    </div>
+
+    <!-- 7 -->
+    <div class="rider-card">
+      <img src="images/28424_0.jpg" alt="">
+      <h3>Kamen Rider Super-1 (1980)</h3>
+      <p>A space-trained Rider equipped with multiple form-changing abilities</p>
+      <p>for different combat situations.</p>
+      <p>he series highlights versatility, advanced technology,</p>
+      <p>and the expansion of Rider capabilities.</p>
+    </div>
+
+    <!-- 8 -->
+    <div class="rider-card">
+      <img src="images/28425.png" alt="">
+      <h3>Kamen Rider ZX (1984)</h3>
+      <p>A mysterious cybernetic Rider caught between</p>
+      <p>humanity and the forces of evil.</p>
+      <p>ts narrative explores identity, betrayal,</p>
+      <p>and the struggle to choose one’s own path.</p>
+    </div>
+
+    <!-- 9 -->
+    <div class="rider-card">
+      <img src="images/28426_0.jpg" alt="">
+      <h3>Kamen Rider BLACK (1987)</h3>
+      <p>A dark and serious tale centered on fate, loneliness,</p>
+      <p>and resistance against inevitable destiny.</p>
+      <p>Praised for its mature tone,</p>
+      <p>it redefined storytelling depth in the Kamen Rider series.</p>
+    </div>
+
+    <!-- 10 -->
+    <div class="rider-card">
+      <img src="images/28427_0.jpg" alt="">
+      <h3>Kamen Rider BLACK RX (1988)</h3>
+      <p>A reborn hero who rises from defeat and evolves beyond his former self.</p>
+      <p>Combining classic heroism with renewed hope,</p>
+      <p>it marks a powerful conclusion to the Showa era.</p>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="lightbox" id="lightbox">
+  <img src="" alt="">
+</div>
+
+
+<footer class="site-footer">
+
+  <img src="images/japanese logo.jpg" class="footer-logo" alt="Kamen Rider Logo">
+
+  <p class="footer-text">
+    A fan-made archive celebrating the legacy of Kamen Rider.<br>
+    This website is for educational and non-commercial purposes only.
+  </p>
+
+  <div class="footer-links">
+    <a href="https://www.kamen-rider-official.com/" target="_blank">Official Site</a>
+    <span>｜</span>
+    <a href="https://x.com/HKR20_official" target="_blank">Official X</a>
+    <span>｜</span>
+    <a href="https://www.youtube.com/@KAMENRIDER_Official_Toei" target="_blank">Official YouTube</a>
+  </div>
+
+  <p class="footer-copy">
+    © 1971–2025 Kamen Rider Series / Fan Archive
+  </p>
+
+</footer>
+</body>
+
+</html>

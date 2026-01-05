@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>KAMEN RIDER LEGACY</title>
+</head>
+
+<style>
+/* ====== 全域 ====== */
+
+header {
+  background: #0f5735; 
+  padding: 15px;
+  color: white;
+  text-align: center; 
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #000;
+  color: #fff;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ====== Header ====== */
+
+.header-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; /* Logo 與字的距離 */
+}
+
+.logo {
+  height: 50px;  /* 可調整 logo 大小 */
+}
+
+header {
+  background: #0f5735; 
+  padding: 15px;
+  color: white;
+}
+
+.header-menu {
+  background: #e30f32;
+  padding: 10px;
+  text-align: center;
+}
+
+.header-menu a {
+  margin: 0 10px;
+  font-weight: bold;
+}
+
+/* 紅色主選單基本 */
+.header-menu a {
+  margin: 0 14px;
+  font-weight: bold;
+  padding: 6px 12px;
+  border-radius: 4px;
+  transition: background .2s;
+}
+
+/* 滑鼠移過 */
+.header-menu a:hover {
+  background: #b10d28;
+}
+
+/* 被點擊（目前頁面） */
+.header-menu a.active {
+  background: #8c0a1f; 
+}
+
+
+/* ====== Layout ====== */
+.container {
+  width: 1100px;
+  margin: auto;
+  padding: 20px;
+}
+
+.left-page {
+  background: #111;     /* 深灰，完全遮住背景 */
+  padding: 20px;
+  box-shadow: 0 0 10px #000;
+  position: relative; 
+  z-index: 1;
+}
+
+/* ===== 左右頁面格式 ===== */
+.left-page, 
+.right-page {
+  background: #111;
+  padding: 20px;
+  box-shadow: 0 0 10px #000000;
+}
+
+/* ====== 灰色主選單（平成、令和…） ===== */
+.era-menu {
+  margin: 25px 0;
+}
+
+.era-btn {
+  display: block;
+  width: 120px;
+  padding: 10px;
+  background: #cfcfcf;
+  color: #000;
+  margin-bottom: 10px;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.era-btn:hover {
+  background: #e4e4e4;
+}
+
+/* ====== 海報 10 格 ====== */
+.poster-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.poster-grid img {
+  width: 100%;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: transform .3s;
+}
+
+.poster-grid img:hover {
+  transform: scale(1.05);
+}
+
+.main-poster {
+  text-align: center;   /* 讓海報置中 */
+  margin: 0px 0;       /* 與上下保持距離 */
+}
+
+.main-poster img {
+  width: 100%;          /* 自動縮放到 container 寬度 */
+  max-width: 850px;    /* 限制最大寬度，避免過大 */
+  border-radius: 20px;   /* 可選：外框圓角 */
+}
+
+.main-poster {
+  margin-bottom: 40px; /* 控制圖片與下面文字距離 */
+}
+
+/* --- 讓選單與海報左右排列 --- */
+.menu-and-poster {
+  display: flex;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+/* 左側選單固定寬度 */
+.era-menu {
+  width: 150px;
+}
+
+/* 新增的 Series 標題 */
+.era-title {
+  color: #fff;
+  font-size: 20px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* 右側海報自動填滿剩餘空間 */
+.main-poster {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.main-poster img {
+  width: 100%;
+  max-width: 800px;
+  border-radius: 20px;
+}
+
+/* ===== Footer ===== */
+footer {
+  background: #222;
+  color: #ccc;
+  padding: 30px 20px;
+  text-align: center;
+  margin-top: 60px;   
+}
+
+
+/* ======================
+   兩張照片並排
+====================== */
+.photo-pair {
+  display: flex;
+  gap: 20px;
+  margin: 30px 0;
+}
+
+.photo-item {
+  flex: 1;
+  text-align: center;
+}
+
+.photo-item img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform .3s, box-shadow .3s;
+}
+
+.photo-item img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 10px 30px rgba(0,0,0,.5);
+}
+
+/* 照片下方說明文字 */
+.photo-caption {
+  font-size: 13px;
+  color: #ccc;
+  margin-top: 8px;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #000;
+  background-image: url("images/backgroundv2.png"); /* 淡背景圖 */
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+  background-attachment: fixed; /* 滾動時有質感 */
+  color: #fff;
+}
+
+/* ======================
+   點擊放大（Lightbox）
+====================== */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.8);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 16px;
+}
+
+.summary-box {
+  background: #ffffff;
+  color: #111;
+  max-width: 900px;
+  margin: 60px auto 30px;
+  padding: 28px 36px;
+  border-radius: 14px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,.25);
+}
+
+.summary-box p {
+  font-size: 18px;
+  line-height: 1.6;
+  margin: 0;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.site-footer {
+  background: #111;
+  color: #ccc;
+  padding: 40px 20px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.footer-logo {
+  width: 60px;
+  margin-bottom: 15px;
+  opacity: 0.9;
+}
+
+.footer-text {
+  line-height: 1.6;
+  margin-bottom: 15px;
+  color: #aaa;
+}
+
+.footer-links {
+  margin-bottom: 15px;
+}
+
+.footer-links a {
+  color: #fff;
+  font-weight: bold;
+  margin: 0 5px;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: #e30f32; 
+}
+
+.footer-copy {
+  font-size: 12px;
+  color: #777;
+}
+
+.footer-logo {
+  width: 120px;      /* ← 放大 */
+  max-width: 120px;  /* ← 避免過大 */
+  margin-bottom: 15px;
+}
+
+/* ======================
+   Franchise Overview Box
+====================== */
+.franchise-outline-box {
+  max-width: 900px;
+  margin: 80px auto 40px;
+  padding: 36px 42px;
+  border: 2px solid rgba(255,255,255,0.8);
+  border-radius: 16px;
+  text-align: center;
+  background: transparent;
+  text-align: left; 
+}
+
+.franchise-outline-box h3 {
+  font-size: 22px;
+  margin-bottom: 24px;
+  letter-spacing: 1px;
+}
+
+.franchise-outline-box p {
+  font-size: 16px;
+  line-height: 1.7;
+  margin: 14px 0;
+  color: #eee;
+}
+
+</style>
+
+<script>
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = lightbox.querySelector('img');
+
+  document.querySelectorAll('.photo-item img').forEach(img => {
+    img.addEventListener('click', () => {
+      lightboxImg.src = img.src;
+      lightbox.style.display = 'flex';
+    });
+  });
+
+  lightbox.addEventListener('click', () => {
+    lightbox.style.display = 'none';
+  });
+</script>
+
+<body>
+
+<header>
+  <div class="header-center">
+    <img src="images/圓logo.png" class="logo">
+    <h1>KAMEN RIDER LEGACY</h1>
+  </div>
+</header>
+
+
+<div class="header-menu">
+  <a href="index.html">Home</a>
+  <a href="history.html"class="active">History</a>
+  <a href="features.html">Features</a>
+  <a href="list3.html">Series</a>
+</div>
+
+<div class="container left-page">
+
+  <h2>Introduction: The Legacy of Kamen Rider</h2>
+  <p><i>Kamen Rider</i> is more than a television series — it is a cornerstone of Japanese <b>tokusatsu culture</b>. </p>
+  <p>Since its debut, the franchise has combined masked heroes, practical effects, and social themes </p>
+  <p>to create a unique form of televised heroism.</p><br><br>
+  <p>Across different eras, Kamen Rider has evolved alongside society and technology,</p>
+  <p>while preserving its core ideals of <b>transformation, justice, and hope</b>.</p>
+  <p>This history explores how the series grew from a single experiment into a lasting cultural legacy.</p>
+
+  <div class="menu-and-poster">
+  <img src="images/history.jpg" alt="Main Poster">
+  
+</div>
+
+<div>
+  <br><br><br><br><h2>The Birth of Kamen Rider and the Golden Age of Tokusatsu</h2>
+  <p><b><i>(1971–1989 | Showa Era)</i></b></p><br><br>
+  <p><b>Kamen Rider</b> debuted in <b>1971</b>, created by <b>Shotaro Ishinomori</b>,</p>
+  <p>and quickly became one of the most iconic hero franchises in Japanese tokusatsu culture.</p>
+  <p>The Showa era established the core concept of the <b>“modified human hero”</b>,</p>
+  <p>portraying Riders who were forcibly transformed and chose to fight evil organizations despite their tragic fate.</p>
+  <!-- 兩張照片區塊 -->
+<div class="photo-pair">
+
+  <div class="photo-item">
+    <img src="images/Shotaro.png" alt="photo 1">
+    <p class="photo-caption">石森章太郎 Shotaro Ishinomori</p>
+  </div>
+
+  <div class="photo-item">
+    <img src="images/1 kick.jpg" alt="photo 2">
+    <p class="photo-caption">Kamen Rider 1 rider kick</p>
+  </div>
+
+</div>
+
+<!-- 彈出用遮罩 -->
+<div class="lightbox" id="lightbox">
+  <img src="" alt="">
+</div>
+
+  <p>Most Showa-era series focused on a <b>single Rider</b>, presented through weekly television broadcasts.</p>
+  <p>During this period, foundational elements such as <b>transformation belts, finishing moves, and monster organizations</b> were firmly established.</p>
+  <p>In terms of production, these works relied heavily on <b>practical effects</b>, including suit acting, real-location filming, miniature sets, and explosive stunts,</p>
+  <p>creating a raw and physical sense of action unique to tokusatsu.</p>
+  <!-- 兩張照片區塊 -->
+<div class="photo-pair">
+
+  <div class="photo-item">
+    <img src="images/ultraman.jpg" alt="photo 1">
+    <p class="photo-caption">Ultraman franchise (1966-)</p>
+  </div>
+
+  <div class="photo-item">
+    <img src="images/super sentai.jpg" alt="photo 2">
+    <p class="photo-caption">Super Sentai franchise (1975-)</p>
+  </div>
+
+</div>
+
+
+  <p>Alongside series such as Ultraman and the Super Sentai franchise, Kamen Rider became a cornerstone of Japan’s <b>tokusatsu golden age</b>,</p>
+  <p>shaping children’s television and popular culture for generations.</p><br><br><br><br>
+</div>
+
+
+<div>
+  <h2>Series Revival and Narrative Maturity</h2>
+  <p><b><i>(2000–2009 | Heisei Phase 1)</i></b></p><br><br>
+  <p>After a hiatus in the 1990s, Kamen Rider was reborn in <b>2000</b> with Kamen Rider Kuuga, marking a major revival of the franchise.</p>
+  <p>Heisei Phase 1 introduced a <b>more mature and grounded storytelling style</b>, moving beyond simple good-versus-evil conflicts to explore</p>
+  <p><b>personal growth, inner struggle, and the burden of becoming a hero</b>.</p>
+<!-- 兩張照片區塊 -->
+<div class="photo-pair">
+
+  <div class="photo-item">
+    <img src="images/ryuki fight.png" alt="photo 3">
+    <p class="photo-caption">Kamen Rider Knight & Ryuki</p>
+  </div>
+
+  <div class="photo-item">
+    <img src="images/faiz bike.jpg" alt="photo 4">
+    <p class="photo-caption">Kamen Rider Faiz vs Orphnoch</p>
+  </div>
+
+</div>
+
+  
+  <p>Riders of this era were often portrayed as <b>lonely figures</b>, </p>
+  <p>fighting not only external enemies but also their own doubts, responsibilities, and sense of identity.</p>
+  <p>Production techniques evolved significantly, incorporating <b>digital effects, cinematic framing, and more realistic action choreography</b>,</p>
+  <p>allowing Kamen Rider to transition from a children’s program into a series appealing to a broader, all-ages audience.</p>
+<!-- 兩張照片區塊 -->
+<div class="photo-pair">
+
+  <div class="photo-item">
+    <img src="images/garren.jpg" alt="photo 3">
+    <p class="photo-caption">Kamen Rider Garren</p>
+  </div>
+
+  <div class="photo-item">
+    <img src="images/kabuto rain.jpg" alt="photo 4">
+    <p class="photo-caption">Arata Kagami</p>
+  </div>
+
+</div>
+
+
+  <p>This phase laid the <b>narrative and thematic foundation</b> for modern Kamen Rider, redefining the franchise for the 21st century.</p><br><br><br><br>
+</div>
+
+
+
+
+<div>
+  <h2>The Era of Multiple Riders and Cross-Media Expansion</h2>
+  <p><b><i>(2010–Present | Heisei Phase 2 & Reiwa Era)</i></b></p><br><br>
+  <p>From 2010 onward, Kamen Rider entered an era defined by <b>multiple Riders and ensemble storytelling</b>.</p>
+  <p>Rather than focusing solely on a single hero, the series began exploring complex relationships between</p>
+  <p>allies, rival Riders, and opposing factions within shared and interconnected worlds.</p>
+<!-- 兩張照片區塊 -->
+<div class="photo-pair">
+
+  <div class="photo-item">
+    <img src="images/kamen rider wizard henshin.jpeg" alt="photo 5">
+    <p class="photo-caption">Kamen Rider Wizard henshin</p>
+  </div>
+
+  <div class="photo-item">
+    <img src="images/ex-aid -4r.jpg" alt="photo 6">
+    <p class="photo-caption">Kamen Rider Brave, Ex-Aid, Snipe & Lazer </p>
+  </div>
+
+</div>
+
+
+  <p>Thematically, modern Kamen Rider delves into <b>technology and humanity, artificial intelligence, social systems, identity, and free will</b>,</p>
+  <p>reflecting the challenges and anxieties of contemporary society.</p>
+  <p>Visually and narratively, the series adopted <b>faster pacing, sharper aesthetics, and bold experimental concepts</b>, </p>
+  <p>pushing the boundaries of traditional tokusatsu.</p>
+<!-- 兩張照片區塊 -->
+<div class="photo-pair">
+
+  <div class="photo-item">
+    <img src="images/Kamen-Rider-Zero-One-Aruto-Ja-Naito.jpg" alt="photo 5">
+    <p class="photo-caption">Is & Aruto Hiden</p>
+  </div>
+
+  <div class="photo-item">
+    <img src="images/geats&gotchard.jpg" alt="photo 6">
+    <p class="photo-caption">Kamen Rider Tycoon(from Geats) & Kame Rider Gotchard </p>
+  </div>
+
+</div>
+
+
+  <p>At the same time, the franchise expanded beyond television into <b>films, OVAs, streaming series, and animated adaptations</b>, </p>
+  <p>forming a rich cross-media narrative ecosystem.</p>
+  <p>These expansions and special projects transformed Kamen Rider from a simple annual TV series into a continually evolving franchise .</p>
+  <p>capable of <b>reinventing the meaning of heroism</b></p>
+</div>
+
+
+
+<div class="franchise-outline-box">
+  <h3>Franchise Overview</h3>
+
+  <p>
+    Since 1971, <b>Kamen Rider</b> has evolved from a single experimental television series
+    into a multi-generational tokusatsu franchise spanning television, film, streaming,
+    and animation.
+  </p>
+
+  <p>
+    While each era reflects its own cultural context and creative direction,
+    the franchise consistently centers on themes of <b>transformation, sacrifice,
+    justice, and the struggle between humanity and power</b>.
+  </p>
+
+  <p>
+    By balancing tradition with reinvention, Kamen Rider continues to redefine
+    what a hero can be — across time, media, and generations.
+  </p>
+</div>
+
+
+
+<footer class="site-footer">
+
+  <img src="images/japanese logo.jpg" class="footer-logo" alt="Kamen Rider Logo">
+
+  <p class="footer-text">
+    A fan-made archive celebrating the legacy of Kamen Rider.<br>
+    This website is for educational and non-commercial purposes only.
+  </p>
+
+  <div class="footer-links">
+    <a href="https://www.kamen-rider-official.com/" target="_blank">Official Site</a>
+    <span>｜</span>
+    <a href="https://x.com/HKR20_official" target="_blank">Official X</a>
+    <span>｜</span>
+    <a href="https://www.youtube.com/@KAMENRIDER_Official_Toei" target="_blank">Official YouTube</a>
+  </div>
+
+  <p class="footer-copy">
+    © 1971–2025 Kamen Rider Series / Fan Archive
+  </p>
+
+</footer>
+
+</body>
+
+</html>

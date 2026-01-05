@@ -1,0 +1,151 @@
+/* ======================
+   全域設定
+====================== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #000;
+  color: #fff;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ======================
+   Header（綠底 Logo + 標題）
+====================== */
+header {
+  background: #0f5735;
+  padding: 15px;
+  color: white;
+}
+
+.header-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.logo {
+  height: 50px;
+}
+
+/* ======================
+   紅色主選單
+====================== */
+.header-menu {
+  background: #e30f32;
+  padding: 10px;
+  text-align: center;
+}
+
+.header-menu a {
+  margin: 0 14px;
+  font-weight: bold;
+}
+
+/* ======================
+   主內容容器
+====================== */
+.container {
+  width: 1100px;
+  margin: auto;
+  padding: 25px;
+}
+
+/* 黑色內容底 */
+.left-page {
+  background: #111;
+  padding: 25px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.7);
+}
+
+/* ======================
+   Series 選單 + 海報（左右排列）
+====================== */
+.menu-and-poster {
+  display: flex;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+/* ===== 左側灰色選單 ===== */
+.era-menu {
+  width: 150px;
+}
+
+.era-title {
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.era-btn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background: #cfcfcf;
+  color: #000;
+  margin-bottom: 10px;
+  text-align: center;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background .2s;
+}
+
+.era-btn:hover {
+  background: #e4e4e4;
+}
+
+/* ===== 右側主視覺海報 ===== */
+.main-poster {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.main-poster img {
+  width: 100%;
+  max-width: 850px;
+  border-radius: 20px;
+}
+
+/* ======================
+   海報格狀（未來用）
+====================== */
+.poster-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.poster-grid img {
+  width: 100%;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: transform .3s;
+}
+
+.poster-grid img:hover {
+  transform: scale(1.05);
+}
+
+/* ======================
+   Footer
+====================== */
+footer {
+  background: #222;
+  color: #ccc;
+  padding: 20px;
+  text-align: center;
+  margin-top: 40px;
+}

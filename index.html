@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="zh">
+<header>
+  <div class="header-center">
+    <img src="images/圓logo.png" class="logo">
+    <h1>KAMEN RIDER LEGACY</h1>
+  </div>
+</header>
+
+<style>
+
+header {
+  background: #0f5735; 
+  padding: 15px;
+  color: white;
+  text-align: center; 
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #000;
+  color: #fff;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.header-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; /* Logo 與字的距離 */
+}
+
+.logo {
+  height: 50px;  /* 可調整 logo 大小 */
+}
+
+header {
+  background: #0f5735; 
+  padding: 15px;
+  color: white;
+}
+
+.header-menu {
+  background: #e30f32;
+  padding: 10px;
+  text-align: center;
+}
+
+.header-menu a {
+  margin: 0 10px;
+  font-weight: bold;
+}
+
+/* 紅色主選單基本 */
+.header-menu a {
+  margin: 0 14px;
+  font-weight: bold;
+  padding: 6px 12px;
+  border-radius: 4px;
+  transition: background .2s;
+}
+
+/* 滑鼠移過 */
+.header-menu a:hover {
+  background: #b10d28;
+}
+
+/* 被點擊（目前頁面） */
+.header-menu a.active {
+  background: #8c0a1f; 
+}
+
+
+/* ====== Layout ====== */
+.container {
+  width: 1100px;
+  margin: auto;
+  padding: 20px;
+}
+
+.left-page {
+  background: #111;     /* 深灰，完全遮住背景 */
+  padding: 20px;
+  box-shadow: 0 0 10px #000;
+  position: relative;  
+  z-index: 1;
+}
+
+/* ===== 左右頁面格式 ===== */
+.left-page, 
+.right-page {
+  background: #111;
+  padding: 20px;
+  box-shadow: 0 0 10px #000000;
+}
+
+/* ====== 灰色主選單（平成、令和…） ===== */
+.era-menu {
+  margin: 25px 0;
+}
+
+.era-btn {
+  display: block;
+  width: 120px;
+  padding: 10px;
+  background: #cfcfcf;
+  color: #000;
+  margin-bottom: 10px;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.era-btn:hover {
+  background: #e4e4e4;
+}
+
+/* ====== 海報 10 格 ====== */
+.poster-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.poster-grid img {
+  width: 100%;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: transform .3s;
+}
+
+.poster-grid img:hover {
+  transform: scale(1.05);
+}
+
+.main-poster {
+  text-align: center;   /* 讓海報置中 */
+  margin: 0px 0;       /* 與上下保持距離 */
+}
+
+.main-poster img {
+  width: 100%;          /* 自動縮放到 container 寬度 */
+  max-width: 850px;    /* 限制最大寬度，避免過大 */
+  border-radius: 20px;   /* 可選：外框圓角 */
+}
+
+.main-poster {
+  margin-bottom: 40px; /* 控制圖片與下面文字距離 */
+}
+
+/* --- 讓選單與海報左右排列 --- */
+.menu-and-poster {
+  display: flex;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+/* 左側選單固定寬度 */
+.era-menu {
+  width: 150px;
+}
+
+/* 新增的 Series 標題 */
+.era-title {
+  color: #fff;
+  font-size: 20px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* 右側海報自動填滿剩餘空間 */
+.main-poster {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.main-poster img {
+  width: 100%;
+  max-width: 800px;
+  border-radius: 20px;
+}
+
+/* ===== Footer ===== */
+footer {
+  background: #222;
+  color: #ccc;
+  padding: 30px 20px;
+  text-align: center;
+  margin-top: 60px;  
+}
+
+
+/* ======================
+   兩張照片並排
+====================== */
+.photo-pair {
+  display: flex;
+  gap: 20px;
+  margin: 30px 0;
+}
+
+.photo-item {
+  flex: 1;
+  text-align: center;
+}
+
+.photo-item img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform .3s, box-shadow .3s;
+}
+
+.photo-item img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 10px 30px rgba(0,0,0,.5);
+}
+
+/* 照片下方說明文字 */
+.photo-caption {
+  font-size: 13px;
+  color: #ccc;
+  margin-top: 8px;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #000;
+  background-image: url("images/backgroundv2.png"); /* 淡背景圖 */
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+  background-attachment: fixed; /* 滾動時有質感 */
+  color: #fff;
+}
+
+/* ======================
+   點擊放大（Lightbox）
+====================== */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.8);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 16px;
+}
+
+.summary-box {
+  background: #ffffff;
+  color: #111;
+  max-width: 900px;
+  margin: 60px auto 30px;
+  padding: 28px 36px;
+  border-radius: 14px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,.25);
+}
+
+.summary-box p {
+  font-size: 18px;
+  line-height: 1.6;
+  margin: 0;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.site-footer {
+  background: #111;
+  color: #ccc;
+  padding: 40px 20px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.footer-logo {
+  width: 60px;
+  margin-bottom: 15px;
+  opacity: 0.9;
+}
+
+.footer-text {
+  line-height: 1.6;
+  margin-bottom: 15px;
+  color: #aaa;
+}
+
+.footer-links {
+  margin-bottom: 15px;
+}
+
+.footer-links a {
+  color: #fff;
+  font-weight: bold;
+  margin: 0 5px;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: #e30f32; 
+}
+
+.footer-copy {
+  font-size: 12px;
+  color: #777;
+}
+
+.footer-logo {
+  width: 120px;      
+  max-width: 120px;  
+  margin-bottom: 15px;
+}
+
+
+</style>
+
+<script>
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = lightbox.querySelector('img');
+
+  document.querySelectorAll('.photo-item img').forEach(img => {
+    img.addEventListener('click', () => {
+      lightboxImg.src = img.src;
+      lightbox.style.display = 'flex';
+    });
+  });
+
+  lightbox.addEventListener('click', () => {
+    lightbox.style.display = 'none';
+  });
+</script>
+
+<body>
+
+<div class="header-menu">
+  <a href="index.html" class="active">Home</a>
+  <a href="history.html">History</a>
+  <a href="features.html">Features</a>
+  <a href="list3.html">Series</a>
+</div>
+
+
+<div class="container left-page">
+
+  <h2>An Everlasting Heroic Legend: The Kamen Rider Series</h2>
+  <p>Since the debut of its first installment in 1971. </p>
+  <p>The Kamen Rider Series has become one of the most brilliant and enduring icons in Japanese Tokusatsu culture and even global popular culture. </p>
+  <p>It is known for its unique hero imagery, moving stories, and stunning action sequences.</p>
+
+
+  <div class="menu-and-poster">
+
+  <!-- 左邊：灰色選單 -->
+  <div class="era-menu">
+    <h3 class="era-title">Series List</h3>
+    <a class="era-btn" href="list0.html?era=showa">Showa</a>
+    <a class="era-btn" href="list2.html?era=heisei1">Heisei Phase 1</a>
+    <a class="era-btn" href="list.html?era=heisei2">Heisei Phase 2</a>
+    <a class="era-btn" href="list3.html?era=rewa">Reiwa</a>
+    <a class="era-btn" href="list4.html?era=special">Others</a>
+  </div>
+
+  <!-- 右邊：主視覺海報 -->
+  <div class="main-poster">
+    <img src="images/27821.jpg" alt="Main Poster">
+  </div>
+
+</div>
+
+
+<div>
+ <h2>What is Kamen Rider?</h2>
+  <p>The core concept of the Kamen Rider Series revolves around one or more <b>"Riders"</b>: </p>
+  <p>warriors who are usually cybernetically enhanced or possess special powers.</p>
+  <p>Their mission is to protect humanity by fighting against evil organizations that seek to destroy the world or commit wicked acts. </p>
+
+  <p>These Riders often carry a <b> price or a tragic destiny</b>. </p>
+  <p>Their powers might even originate from the very evil technology they fight against. </p>
+  <p>They are not flawless supermen, but rather <b>"lonely heroes who have endured great hardship."</b> </p>
+  <p>This poignant aspect is precisely the greatest charm of the series.</p>
+</div>
+
+<!-- 兩張照片區塊 -->
+<div class="photo-pair">
+
+  <div class="photo-item">
+    <img src="images/1代.jpg" alt="photo 1">
+    <p class="photo-caption">Kamen Rider 1 (1971)</p>
+  </div>
+
+  <div class="photo-item">
+    <img src="images/all riders.jpg" alt="photo 2">
+    <p class="photo-caption">Heisei era riders phase 1</p>
+  </div>
+
+</div>
+
+<!-- 彈出用遮罩 -->
+<div class="lightbox" id="lightbox">
+  <img src="" alt="">
+</div>
+
+
+<div>
+  <h2>Unique Hero Imagery: Motorcycles and Cybernetics</h2>
+  <p><b><i>．"The Motorcycle":</i></b></p>
+  <p>The iconic vehicle of the Kamen Rider, serving not just as transportation but as a crucial partner in battle and a key component of their visual identity.</p>
+  <p><b><i>．"The Transformation":</i></b></p>
+  <p>Accompanied by spectacular effects and thrilling sounds, the hero's transformation from an ordinary person into an armored warrior is</p>
+  <p>one of the most climactic moments in every series.</p>
+  <p><b><i>．"Cyborg/Reinforced Armor":</i></b></p>
+  <p>Early Riders were often tragic cyborgs, while recent works tend to feature high-tech or magical "reinforced armor."</p>
+  <p>Regardless of the source, they all represent <b>"power that surpasses human limits."</b></p>
+</div>
+
+<!-- 兩張照片區塊 -->
+<div class="photo-pair">
+
+  <div class="photo-item">
+    <img src="images/buid mc.png" alt="photo 3">
+    <p class="photo-caption">Kamen Rider Build Motorcycle</p>
+  </div>
+
+  <div class="photo-item">
+    <img src="images/ooo forms.jpg" alt="photo 4">
+    <p class="photo-caption">Kamen Rider OOO all main forms</p>
+  </div>
+
+</div>
+
+<!-- 彈出用遮罩 -->
+<div class="lightbox" id="lightbox">
+  <img src="" alt="">
+</div>
+
+
+<div>
+  <h2>Evolving Themes and Stories</h2>
+  <p>While every series adheres to the theme of "justice versus evil," the Kamen Rider Series always keeps pace with the times, exploring deeper social issues:</p>
+  <p>the Kamen Rider Series always keeps pace with the times, exploring deeper social issues:</p>
+  <p><b><i>．Showa Era (1971–1989):</i></b></p>
+  <p>Focuses on the <b>"tragedy of the cyborg"</b> and the <b>"fight for justice."</b>The style is relatively grim and highly dramatic.</p>
+  <p><b><i>．Heisei Era (2000–2019):</i></b></p>
+  <p>Boldly innovative, each series features unique visual styles and narrative themes,</p>
+  <p>exploring complex concepts such as "humanity," "memory," "predestined fate," and "rules of the game."</p>
+  <p><b><i>．Reiwa Era (2019–Present):</i></b></p>
+  <p>Incorporates modern elements like advanced technology, AI, and workplace life, continuing to expand the boundaries of Tokusatsu.</p>
+
+</div>
+
+<!-- 兩張照片區塊 -->
+<div class="photo-pair">
+
+  <div class="photo-item">
+    <img src="images/black fight.jpg" alt="photo 5">
+    <p class="photo-caption">Kamen Rider Black vs Shadow Moon</p>
+  </div>
+
+  <div class="photo-item">
+    <img src="images/gavv fight.jpg" alt="photo 6">
+    <p class="photo-caption">Kamen Rider Gavv Over Mode</p>
+  </div>
+
+</div>
+
+<!-- 彈出用遮罩 -->
+<div class="lightbox" id="lightbox">
+  <img src="" alt="">
+</div>
+
+<div class="summary-box">
+  <p><i>Across generations, Kamen Riders continue to fight —</i></p>
+  <p><i>not only against evil, but for hope, justice, and the future.</i></p>
+  
+</div>
+
+
+<footer class="site-footer">
+
+  <img src="images/japanese logo.jpg" class="footer-logo" alt="Kamen Rider Logo">
+
+  <p class="footer-text">
+    A fan-made archive celebrating the legacy of Kamen Rider.<br>
+    This website is for educational and non-commercial purposes only.
+  </p>
+
+  <div class="footer-links">
+    <a href="https://www.kamen-rider-official.com/" target="_blank">Official Site</a>
+    <span>｜</span>
+    <a href="https://x.com/HKR20_official" target="_blank">Official X</a>
+    <span>｜</span>
+    <a href="https://www.youtube.com/@KAMENRIDER_Official_Toei" target="_blank">Official YouTube</a>
+  </div>
+
+  <p class="footer-copy">
+    © 1971–2025 Kamen Rider Series / Fan Archive
+  </p>
+
+</footer>
+
+</body>
+
+</html>
